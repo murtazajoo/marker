@@ -8,7 +8,7 @@ for (let i = 0; i < SubjectData.length; i++) {
   let topicsHtml = "";
   let checkedCount = 0;
   let totalCount = SubjectData[i].topics.length;
-  for (let j = 0; j < SubjectData[i].topics.length - 1; j++) {
+  for (let j = 0; j < SubjectData[i].topics.length; j++) {
     let checked = "";
     if (SubjectData[i].topics[j].checked === true) {
       checked = "checked";
