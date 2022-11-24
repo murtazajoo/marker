@@ -31,7 +31,7 @@ for (let i = 0; i < SubjectData.length; i++) {
     .replace(/\s/g, "")
     .replace(/\W/g, "");
   finalHTML = `
-     <div class="container-sm  my-2">
+     <div class="container-sm  my-2 ">
       <div>
         <p>
           <a
