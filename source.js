@@ -7,7 +7,7 @@ for (let i = 0; i < subjects.length; i++) {
   let subjectDataMain = dataAll[0][subjects[i]];
   for (let j = 0; j < subjectDataMain.length; j++) {
     totalCount += subjectDataMain[j].topics.length;
-    for (let k = 0; k < subjectDataMain[j].topics.length - 1; k++) {
+    for (let k = 0; k < subjectDataMain[j].topics.length; k++) {
       if (subjectDataMain[j].topics[k].checked === true) {
         checkedCount++;
       }
