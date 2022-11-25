@@ -34,3 +34,57 @@ function eraseData() {
     window.location.reload();
   }
 }
+
+function addTodo() {
+  let newTitle = document.getElementById("todo-new-title").value;
+  if (newTitle === "") return;
+  let obj = {
+    value: true,
+    title: newTitle,
+  };
+  newTitle = "";
+  let exists = JSON.parse(localStorage.getItem("todo"));
+  exists.push(obj);
+  localStorage.setItem("todo", JSON.stringify(exists));
+  checkLocalTodo();
+}
+
+function checkLocalTodo() {
+  if (localStorage.getItem("todo") == null) {
+    let obj = [];
+    localStorage.setItem("todo", JSON.stringify(obj));
+  }
+
+  let todoTboby = document.getElementById("todo-tbody");
+  let dataOfTodo = JSON.parse(localStorage.getItem("todo"));
+  todoTboby.innerHTML = "";
+  if (dataOfTodo.length < 1) {
+    todoTboby.innerHTML = ` <td colspan="3" class="text-center">
+                <p>click the "+" icon to add something</p>
+              </td>
+            </tr>`;
+  } else {
+    for (let i = 0; i < dataOfTodo.length; i++) {
+      todoTboby.innerHTML += `
+  <tr>
+              <td colspan="2">${dataOfTodo[i].title}</td>
+              <td class="text-end"><button
+              onclick="deleteTodo(${i})"
+            type="button"
+            class="btn btn-light shadow-sm"
+          >
+            <i class="fa fa-trash text-danger"></i>
+          </button></td>
+            </tr>
+  `;
+    }
+  }
+}
+checkLocalTodo();
+
+function deleteTodo(i) {
+  let dataOfTodo = JSON.parse(localStorage.getItem("todo"));
+  dataOfTodo.splice(i, 1);
+  localStorage.setItem("todo", JSON.stringify(dataOfTodo));
+  checkLocalTodo();
+}

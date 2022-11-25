@@ -10,12 +10,16 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <script
+      src="https://kit.fontawesome.com/1443690ef3.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="fonts/style.css" />
     <script src="data/data.js"></script>
   </head>
   <body class="my-5">
-    <nav class="navbar fixed-top navbar-expand-lg bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg bg-light shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
         <button
@@ -56,7 +60,7 @@
       </div>
     </nav>
     <div class="container py-5">
-      <div class="table-responsive rounded">
+      <div class="table-responsive rounded mx-2 p-1">
         <table class="table table-hover text-center">
           <caption>
             All Subject
@@ -72,19 +76,98 @@
         </table>
       </div>
     </div>
-    <div class="alert alert-warning text-center p-4" role="alert">
+    <div class="alert alert-warning text-center p-4 shadow mb-5" role="alert">
       Your Data is stored in your Local Browser(you cannot run the same instance
       in another browser/device), if you clean up your browser's storage the
       Data will be lost.
     </div>
+    <div class="border-bottom border-primary my-3"></div>
+    <div class="container">
+      <div class="row align-items-center px-2">
+        <div class="col-6"><div class="text-start  h2 text-dark">TODO</div></div>
+        <div class="col-6 text-end"><button
+            type="button"
+            class="btn btn-light mb-2"
+            data-bs-toggle="modal"
+            data-bs-target="#todoModal"
+          >
+            +
+          </button></div>
+      </div>
+     
+          
+        </div>
+      </div>
+      <div class="table-responsive mx-4 ">
+        <table class="table border ">
+          <thead class="table-light ">
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col"></th>
+              <th scope="col" class="text-end">Delete</th>
+            </tr>
+          </thead>
+          <tbody id="todo-tbody">
+          </tbody>
+        </table>
+      </div>
+    </div>
     <a href="/admin/index.html">Admin</a>
-    <button
-      type="button"
-      onclick="eraseData()"
-      class="btn btn-danger position-absolute bottom-0 my-2"
-    >
+    <button type="button" onclick="eraseData()" class="btn btn-danger my-2">
       Clear All Data
     </button>
+
+   
+    <div
+      class="modal fade"
+      id="todoModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered shadow-lg mb-5">
+        <div class="modal-content">
+          <div class="modal-header position-relative">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add a TODO</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          <span id="alert
+          "></span>
+          </div>
+          <div class="modal-body">
+            <textarea
+              class="w-100 p-2"
+              placeholder="Add A title here e.g Maths ex 6.3"
+              id="todo-new-title"
+              cols="30"
+              rows="5"
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onclick="addTodo()"
+              data-bs-dismiss="modal"
+              class="btn btn-primary"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- https://ncert.nic.in/textbook.php?lech1=ps-9 -->
 
     <script src="source.js"></script>
