@@ -3017,3 +3017,5 @@ let data = [
 if (localStorage.getItem("data") == null) {
   localStorage.setItem("data", JSON.stringify(data));
 }
+
+localStorage.setItem("datacopy", JSON.stringify(data));
