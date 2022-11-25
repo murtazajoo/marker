@@ -61,7 +61,7 @@ function checkLocalTodo() {
   let dataOfTodo = JSON.parse(localStorage.getItem("todo"));
   todoTboby.innerHTML = "";
   if (dataOfTodo.length < 1) {
-    todoTboby.innerHTML = ` <td colspan="3" class="text-center">
+    todoTboby.innerHTML = ` <td colspan="3" class="text-center align-middle">
                 <p>click the "+" icon to add something</p>
               </td>
             </tr>`;
@@ -69,8 +69,8 @@ function checkLocalTodo() {
     for (let i = 0; i < dataOfTodo.length; i++) {
       todoTboby.innerHTML += `
   <tr>
-              <td colspan="2">${dataOfTodo[i].title}</td>
-              <td class="text-end"><button
+              <td colspan="2" class="align-middle">${dataOfTodo[i].title}</td>
+              <td class="text-end align-middle"><button
               onclick="deleteTodo(${i})"
             type="button"
             class="btn btn-light shadow-sm"

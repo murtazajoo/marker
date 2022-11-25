@@ -67,7 +67,7 @@ function editUpdate(sub, i) {
                       </tr>`;
   }
   modalBody.innerHTML = htmlData;
-  modalBody.innerHTML += `<button class="btn my-5"  onClick="resetTopics('${sub}',${i})"><i  class="fa fa-undo " aria-hidden="true">reset</i></button>`;
+  modalBody.innerHTML += `<button class="btn my-5 w-10 border shadow-sm"  onClick="resetTopics('${sub}',${i})"><i  class="fa fa-undo text-danger" aria-hidden="true"> reset</i></button>`;
   let diff = copyData[0][sub][i].topics.length - editData[i].topics.length;
   if (diff > 0) {
     document.getElementById(

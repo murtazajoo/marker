@@ -18,10 +18,10 @@
       ::-webkit-scrollbar {
         display: none;
       }
-      .btn {
+      .container-sm div p .btn {
         width: 100% !important;
         max-width: 600px;
-        margin: 5px auto !important;
+        /* margin: 5px auto !important; */
         border-radius: 0 !important;
       }
       tr {
@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="../../fonts/style.css" />
   </head>
 
-  <body class="my-5 p-4">
+  <body class="my-5 p-2">
     <nav class="navbar fixed-top navbar-expand-lg bg-light border-bottom">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -86,7 +86,18 @@
       </div>
     </nav>
     <!-- Button trigger modal -->
-
+    <div
+      class="my-2"
+      style="--bs-breadcrumb-divider: '/'"
+      aria-label="breadcrumb"
+    >
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <span class="text-black-50 opacity-50" id="nav-sub"></span>
+        </li>
+      </ol>
+    </div>
     <!-- Modal -->
     <div
       class="modal fade"
@@ -98,7 +109,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Topics</h1>
             <button
               type="button"
               class="btn-close"
@@ -120,9 +131,9 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-secondary shadow"
               data-bs-dismiss="modal"
-              onclick="window.location.reload() , window.screenTop(0)"
+              onclick="window.location.reload() , window.scrollTo(0)"
             >
               Close
             </button>

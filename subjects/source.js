@@ -20,11 +20,11 @@ function showData() {
                     <tr id="${"id" + i + "" + j}" class="${
         checked ? "bg-success text-light text-decoration-line-through" : "h"
       }">
-                      <td scope="col" >${j + 1}</td>
-                      <td scope="col" class="topic">${
+                      <td scope="col" class="align-middle">${j + 1}</td>
+                      <td scope="col" class="topic align-middle">${
                         SubjectData[i].topics[j].topic
                       }</td>
-                      <td scope="col"><input type="checkbox"class="form-check-input"  id="" ${checked} onclick="toggleCheck(${
+                      <td scope="col class="text-center align-middle"><input type="checkbox"class="form-check-input p-2 "  id="" ${checked} onclick="toggleCheck(${
         i + "," + j + "," + "'id" + i + "" + j + "'"
       })"></td>
                     </tr>`;
@@ -92,6 +92,7 @@ function showData() {
     allData += finalHTML;
   }
   document.body.innerHTML += allData;
+  document.getElementById("nav-sub").innerText = subjectName;
 }
 
 showData();
