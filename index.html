@@ -76,18 +76,20 @@
         </table>
       </div>
     </div>
-    <div class="alert alert-warning text-center p-4 shadow mb-5" role="alert">
-      Your Data is stored in your Local Browser(you cannot run the same instance
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+     Your Data is stored in your Local Browser(you cannot run the same instance
       in another browser/device), if you clean up your browser's storage the
       Data will be lost.
-    </div>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+  
     <div class="border-bottom border-primary my-3"></div>
     <div class="container">
       <div class="row align-items-center px-2">
         <div class="col-6"><div class="text-start  h2 text-dark">TODO</div></div>
         <div class="col-6 text-end"><button
             type="button"
-            class="btn btn-light mb-2"
+            class="btn btn-light mb-2 shadow border"
             data-bs-toggle="modal"
             data-bs-target="#todoModal"
           >
@@ -100,7 +102,7 @@
       </div>
       <div class="table-responsive mx-4 ">
         <table class="table border ">
-          <thead class="table-light ">
+          <thead class="table-light px-2">
             <tr>
               <th scope="col">Title</th>
               <th scope="col"></th>
