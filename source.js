@@ -36,13 +36,15 @@ function eraseData() {
 }
 
 function addTodo() {
-  let newTitle = document.getElementById("todo-new-title").value;
+  let userTitle = document.getElementById("todo-new-title").value;
+  let newTitle = userTitle;
+  userTitle = " ";
   if (newTitle === "") return;
   let obj = {
     value: true,
     title: newTitle,
   };
-  newTitle = "";
+
   let exists = JSON.parse(localStorage.getItem("todo"));
   exists.push(obj);
   localStorage.setItem("todo", JSON.stringify(exists));
