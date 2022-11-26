@@ -1,6 +1,8 @@
 let linkParams = new URLSearchParams(window.location.search);
 let subjectNamed = linkParams.get("subject");
 let navLinks = document.getElementsByClassName("nav-link");
+document.title = `Subject - ${subjectNamed}`;
+let subId = 0;
 switch (subjectNamed) {
   case "physics":
     navLinks[1].classList.add("active");
@@ -25,7 +27,13 @@ function toggleCheck(i, j, e) {
 
   if (localStorageData[0][subjectNamed][i].topics[j].checked === true) {
     localStorageData[0][subjectNamed][i].topics[j].checked = false;
-    localStorageDataCopy[0][subjectNamed][i].topics[j].checked = false;
+    if (
+      !localStorageData[0][subjectNamed][i].topics[j].hasOwnProperty(
+        "userAdded"
+      )
+    ) {
+      localStorageDataCopy[0][subjectNamed][i].topics[j].checked = false;
+    }
 
     document
       .getElementById(e)
@@ -36,7 +44,13 @@ function toggleCheck(i, j, e) {
       );
   } else {
     localStorageData[0][subjectNamed][i].topics[j].checked = true;
-    localStorageDataCopy[0][subjectNamed][i].topics[j].checked = true;
+    if (
+      !localStorageData[0][subjectNamed][i].topics[j].hasOwnProperty(
+        "userAdded"
+      )
+    ) {
+      localStorageDataCopy[0][subjectNamed][i].topics[j].checked = true;
+    }
 
     document
       .getElementById(e)
@@ -48,7 +62,11 @@ function toggleCheck(i, j, e) {
   }
 
   localStorage.setItem("data", JSON.stringify(localStorageData));
-  localStorage.setItem("datacopy", JSON.stringify(localStorageDataCopy));
+  if (
+    !localStorageData[0][subjectNamed][i].topics[j].hasOwnProperty("userAdded")
+  ) {
+    localStorage.setItem("datacopy", JSON.stringify(localStorageDataCopy));
+  }
 }
 function editClick(sub, i) {
   console.log(sub);
@@ -66,8 +84,12 @@ function editUpdate(sub, i) {
                       <td><i onclick="deleteTopic('${sub}',${i},${j})" class="fa fa-minus-circle text-danger"></i></td>
                       </tr>`;
   }
+  document.getElementById(
+    "add-topic-btn"
+  ).innerHTML = `<button class="btn btn-light shadow text-success" onclick="subId=${i}"     data-bs-toggle="modal"
+      data-bs-target="#addTopic"><i class="fa fa-plus" style="font-size:16px"></i></button>`;
   modalBody.innerHTML = htmlData;
-  modalBody.innerHTML += `<button class="btn my-5 w-10 border shadow-sm"  onClick="resetTopics('${sub}',${i})"><i  class="fa fa-undo text-danger" aria-hidden="true"> reset</i></button>`;
+  modalBody.innerHTML += `<button class="btn  btn-link h6"  onClick="resetTopics('${sub}',${i})"><i  class="fa fa-undo " aria-hidden="true"> reset</i></button>`;
   let diff = copyData[0][sub][i].topics.length - editData[i].topics.length;
   if (diff > 0) {
     document.getElementById(
@@ -85,9 +107,38 @@ function deleteTopic(sub, i, finalIndex) {
   editUpdate(sub, i);
 }
 function resetTopics(sub, i) {
-  let copyData = JSON.parse(localStorage.getItem("datacopy"));
-  let editableData = JSON.parse(localStorage.getItem("data"));
-  editableData[0][sub][i].topics = copyData[0][sub][i].topics;
-  localStorage.setItem("data", JSON.stringify(editableData));
-  editUpdate(sub, i);
+  let proceed = confirm(
+    "Are you sure you want to proceed? The topics will reset to the original!, any topic you added will be lost forever"
+  );
+  if (proceed) {
+    let copyData = JSON.parse(localStorage.getItem("datacopy"));
+    let editableData = JSON.parse(localStorage.getItem("data"));
+    editableData[0][sub][i].topics = copyData[0][sub][i].topics;
+    localStorage.setItem("data", JSON.stringify(editableData));
+    editUpdate(sub, i);
+  }
+}
+
+function addTopic() {
+  let newTopic = document.getElementById("topic-title");
+  let addAlert = document.getElementById("add_topic_alert");
+  if (newTopic.value == "") {
+    addAlert.innerHTML = "Write something in the text box";
+    addAlert.classList.add("alert-danger");
+    return;
+  }
+  let data = JSON.parse(localStorage.getItem("data"));
+  let obj = {
+    topic: newTopic.value,
+    checked: false,
+    userAdded: true,
+  };
+  data[0][subjectNamed][subId].topics.push(obj);
+  localStorage.setItem("data", JSON.stringify(data));
+  addAlert.classList.remove("alert-warning");
+  addAlert.classList.remove("alert-danger");
+
+  addAlert.classList.add("alert-success");
+  addAlert.innerHTML = "Topic added :)";
+  newTopic.value = "";
 }

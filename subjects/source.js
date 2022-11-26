@@ -62,7 +62,7 @@ function showData() {
         <div class="d-flex justify-content-between">   <div>Topics</div> <div>
         <button
       type="button"
-      class="btn btn-light"
+      class="btn btn-light border shadow-sm"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
       onclick="editClick('${subjectName}',${i})"

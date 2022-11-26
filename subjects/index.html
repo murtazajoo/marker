@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap demo</title>
+    <title>Subject</title>
     <script
       src="https://kit.fontawesome.com/1443690ef3.js"
       crossorigin="anonymous"
@@ -34,6 +34,9 @@
         justify-content: center;
         display: flex !important;
       }
+      .navbar-toggler:focus {
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0) !important;
+      }
     </style>
     <link rel="stylesheet" href="../../fonts/style.css" />
   </head>
@@ -41,9 +44,12 @@
   <body class="my-5 p-2">
     <nav class="navbar fixed-top navbar-expand-lg bg-light border-bottom">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand text-muted" href="../"
+          ><i class="fa fa-pencil text-warning" style="font-size: 24px"></i>
+          Marker</a
+        >
         <button
-          class="navbar-toggler"
+          class="navbar-toggler border-0"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -115,6 +121,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              onclick="window.location.reload() , window.scrollTo(0)"
             ></button>
           </div>
           <div class="modal-body">
@@ -123,6 +130,9 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
+                  <th scope="col" class="text-end">
+                    <span id="add-topic-btn"></span>
+                  </th>
                 </tr>
               </thead>
               <tbody id="edit-body"></tbody>
@@ -136,6 +146,56 @@
               onclick="window.location.reload() , window.scrollTo(0)"
             >
               Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addTopic"
+      tabindex="-1"
+      aria-labelledby="addTopicLable"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addTopicLable">Add Topic</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              onclick="window.location.reload() , window.scrollTo(0)"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <textarea
+              id="topic-title"
+              class="w-100 p-2 border"
+              rows="3"
+              placeholder="add a topic here e.g Electromagnetic waves"
+            ></textarea>
+          </div>
+          <div class="modal-footer d-flex">
+            <div
+              class="alert alert-warning p-1 w-100 shadow-sm"
+              id="add_topic_alert"
+            >
+              This Topic will not be saved in the orginal data file, if you
+              reset the topics or delete the topic you added, you won't be able
+              to get it back
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary shadow-sm"
+              onclick="addTopic()"
+            >
+              ADD
             </button>
           </div>
         </div>

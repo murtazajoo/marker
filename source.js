@@ -90,3 +90,22 @@ function deleteTodo(i) {
   localStorage.setItem("todo", JSON.stringify(dataOfTodo));
   checkLocalTodo();
 }
+
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "4b7c2aa273mshb1dd4b16c24ce7fp1abcddjsn59b0d6a4bf22",
+    "X-RapidAPI-Host": "world-of-quotes.p.rapidapi.com",
+  },
+};
+
+fetch(
+  "https://world-of-quotes.p.rapidapi.com/v1/quotes/quote-of-the-day?category=inspirational",
+  options
+)
+  .then((response) => response.json())
+  .then((response) => {
+    document.getElementById("qoute_text").innerText = response.quote;
+    document.getElementById("qoute_author").innerText = response.author;
+  })
+  .catch((err) => console.error(err));
