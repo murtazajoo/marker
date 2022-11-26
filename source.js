@@ -109,3 +109,21 @@ fetch(
     document.getElementById("qoute_author").innerText = response.author;
   })
   .catch((err) => console.error(err));
+
+if (localStorage.getItem("alert") == null) {
+  localStorage.setItem("alert", "false");
+}
+
+if (localStorage.getItem("alert") == "false") {
+  document.getElementById(
+    "one_time_alert"
+  ).innerHTML = ` <div class="alert alert-warning alert-dismissible fade show" role="alert">
+   <b>Only For Class 12th 	&#9888</b> <br>
+The website is under development, you may experience some bugs. Let us know if you find any &#128515
+  <button type="button" onclick="updateAlert()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>`;
+}
+
+function updateAlert() {
+  localStorage.setItem("alert", "true");
+}
