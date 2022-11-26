@@ -95,18 +95,15 @@ const options = {
   method: "GET",
   headers: {
     "X-RapidAPI-Key": "4b7c2aa273mshb1dd4b16c24ce7fp1abcddjsn59b0d6a4bf22",
-    "X-RapidAPI-Host": "world-of-quotes.p.rapidapi.com",
+    "X-RapidAPI-Host": "inspiring-quotes.p.rapidapi.com",
   },
 };
 
-fetch(
-  "https://world-of-quotes.p.rapidapi.com/v1/quotes/quote-of-the-day?category=inspirational",
-  options
-)
+fetch("https://inspiring-quotes.p.rapidapi.com/multiple?count=1", options)
   .then((response) => response.json())
   .then((response) => {
-    document.getElementById("qoute_text").innerText = response.quote;
-    document.getElementById("qoute_author").innerText = response.author;
+    document.getElementById("qoute_text").innerText = response.data[0].quote;
+    document.getElementById("qoute_author").innerText = response.data[0].author;
   })
   .catch((err) => console.error(err));
 
