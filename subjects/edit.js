@@ -67,8 +67,12 @@ function toggleCheck(i, j, e) {
   ) {
     localStorage.setItem("datacopy", JSON.stringify(localStorageDataCopy));
   }
+  updatePercent(i);
 }
 function editClick(sub, i) {
+  document
+    .getElementById("btn-edit-close")
+    .setAttribute("onclick", `TopicsUpdate(${i})`);
   console.log(sub);
   editUpdate(sub, i);
 }
@@ -84,10 +88,6 @@ function editUpdate(sub, i) {
                       <td><i onclick="deleteTopic('${sub}',${i},${j})" class="fa fa-minus-circle text-danger"></i></td>
                       </tr>`;
   }
-  document.getElementById(
-    "add-topic-btn"
-  ).innerHTML = `<button class="btn btn-light shadow text-success" onclick="subId=${i}"     data-bs-toggle="modal"
-      data-bs-target="#addTopic"><i class="fa fa-plus" style="font-size:16px"></i></button>`;
   modalBody.innerHTML = htmlData;
   modalBody.innerHTML += `<button class="btn  btn-link h6"  onClick="resetTopics('${sub}',${i})"><i  class="fa fa-undo " aria-hidden="true"> reset</i></button>`;
   let diff = copyData[0][sub][i].topics.length - editData[i].topics.length;
@@ -120,6 +120,9 @@ function resetTopics(sub, i) {
 }
 
 function addTopic() {
+  document
+    .getElementById("add-topic-btn")
+    .setAttribute("onclick", `TopicsUpdate(${subId})`);
   let newTopic = document.getElementById("topic-title");
   let addAlert = document.getElementById("add_topic_alert");
   if (newTopic.value == "") {
@@ -137,8 +140,25 @@ function addTopic() {
   localStorage.setItem("data", JSON.stringify(data));
   addAlert.classList.remove("alert-warning");
   addAlert.classList.remove("alert-danger");
-
   addAlert.classList.add("alert-success");
   addAlert.innerHTML = "Topic added :)";
   newTopic.value = "";
+  setTimeout(() => {
+    addAlert.innerHTML = "Add Another Topic";
+    addAlert.classList.add("alert-info");
+  }, 2000);
+}
+
+function updatePercent(k) {
+  let element = document.getElementById(`percent${k}`);
+  let data = JSON.parse(localStorage.getItem("data"));
+  let t = data[0][subjectNamed][k].topics.length;
+  let c = 0;
+  for (let i = 0; i < data[0][subjectNamed][k].topics.length; i++) {
+    if (data[0][subjectNamed][k].topics[i].checked === true) {
+      c++;
+    }
+  }
+
+  element.innerHTML = ((c / t) * 100).toFixed(1);
 }

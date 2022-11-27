@@ -121,7 +121,6 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              onclick="window.location.reload() , window.scrollTo(0)"
             ></button>
           </div>
           <div class="modal-body">
@@ -130,9 +129,6 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col" class="text-end">
-                    <span id="add-topic-btn"></span>
-                  </th>
                 </tr>
               </thead>
               <tbody id="edit-body"></tbody>
@@ -143,7 +139,7 @@
               type="button"
               class="btn btn-secondary shadow"
               data-bs-dismiss="modal"
-              onclick="window.location.reload() , window.scrollTo(0)"
+              id="btn-edit-close"
             >
               Close
             </button>
@@ -170,7 +166,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              onclick="window.location.reload() , window.scrollTo(0)"
+              id="add-topic-btn"
             ></button>
           </div>
           <div class="modal-body">
